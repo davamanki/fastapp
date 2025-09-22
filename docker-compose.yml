@@ -20,10 +20,13 @@ services:
     env_file: .env
     environment:
       RUN_IN_DOCKER: "1"
+      PG_HOST: db
     depends_on:
       db:
         condition: service_healthy
-    command: uvicorn app.main:app --host 0.0.0.0 --port ${APP_PORT} --workers 2
+    command: >
+      sh -c "alembic upgrade head &&
+             uvicorn app.main:app --host 0.0.0.0 --port ${APP_PORT}"
     ports:
       - "${APP_PORT}:8000"
     restart: unless-stopped

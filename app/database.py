@@ -16,6 +16,7 @@ class TaskOrm(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str]
     description: Mapped[str | None]
+    is_done: Mapped[bool] = mapped_column(server_default="false", nullable=False)
 
 
 async def create_table():
@@ -26,3 +27,5 @@ async def create_table():
 async def delete_table():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
+
+

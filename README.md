@@ -1,5 +1,5 @@
 # fastapp
-Simple FastAPI + PostgreSQL app with docker-compose (for learning purposes).
+Simple FastAPI + PostgreSQL (SQLALchemy + Alembic) app with docker-compose (for learning purposes).
 
 ## How to Use
 1. Rename `.env.example` to `.env` and set values for:
